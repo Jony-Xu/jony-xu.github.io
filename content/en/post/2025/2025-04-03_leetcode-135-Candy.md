@@ -1,5 +1,5 @@
 ---
-title: Candy
+title: leetcode No.135 Candy
 description: leetcode No.135
 date: 2025-04-03
 categories:

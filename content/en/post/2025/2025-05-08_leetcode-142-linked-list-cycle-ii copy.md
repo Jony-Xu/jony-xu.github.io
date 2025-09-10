@@ -1,5 +1,5 @@
 ---
-title: Candy
+title: leetcode No.142 Linked List Cycle II
 description: leetcode No.142
 date: 2025-05-08
 categories:

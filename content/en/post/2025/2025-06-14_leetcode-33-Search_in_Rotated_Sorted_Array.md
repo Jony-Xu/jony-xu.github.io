@@ -1,5 +1,5 @@
 ---
-title: Candy
+title: leetcode No.33 Search in Rotated Sorted Array
 description: leetcode No.33
 date: 2025-05-08
 categories:
