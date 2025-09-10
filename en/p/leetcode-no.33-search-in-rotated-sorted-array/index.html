@@ -1,0 +1,223 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="leetcode No.33"><title>leetcode No.33 Search in Rotated Sorted Array</title><link rel=canonical href=https://jony-xu.github.io/en/p/leetcode-no.33-search-in-rotated-sorted-array/><link rel=stylesheet href=/scss/style.min.663803bebe609202d5b39d848f2d7c2dc8b598a2d879efa079fa88893d29c49c.css><meta property='og:title' content="leetcode No.33 Search in Rotated Sorted Array"><meta property='og:description' content="leetcode No.33"><meta property='og:url' content='https://jony-xu.github.io/en/p/leetcode-no.33-search-in-rotated-sorted-array/'><meta property='og:site_name' content='Xeeeeon Blog'><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:published_time' content='2025-05-08T00:00:00+00:00'><meta property='article:modified_time' content='2025-05-08T00:00:00+00:00'><meta name=twitter:title content="leetcode No.33 Search in Rotated Sorted Array"><meta name=twitter:description content="leetcode No.33"><link rel="shortcut icon" href=/favicon.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label="Toggle Menu">
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/en/><img src=/img/avatar_hu_c68a00bbf16dac8.png width=300 height=300 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/en>Xeeeeon Blog</a></h1><h2 class=site-description>An IT engineer for development and automation test(Love sports).</h2></div></header><ol class=menu-social><li><a href=https://github.com/Jony-Xu target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li><li><a href=https://twitter.com target=_blank title=Twitter rel=me><svg class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M22 4.01c-1 .49-1.98.689-3 .99-1.121-1.265-2.783-1.335-4.38-.737S11.977 6.323 12 8v1c-3.245.083-6.135-1.395-8-4 0 0-4.182 7.433 4 11-1.872 1.247-3.739 2.088-6 2 3.308 1.803 6.913 2.423 10.034 1.517 3.58-1.04 6.522-3.723 7.651-7.742a13.84 13.84.0 00.497-3.753C20.18 7.773 21.692 5.25 22 4.009z"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/en/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>Home</span></a></li><li><a href=/en/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>Archives</span></a></li><li><a href=/en/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>Search</span></a></li><li><a href=/en/links/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>Links</span></a></li><li class=menu-bottom-section><ol class=menu><li id=i18n-switch><svg class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 5h7"/><path d="M9 3v2c0 4.418-2.239 8-5 8"/><path d="M5 9c-.003 2.144 2.952 3.908 6.7 4"/><path d="M12 20l4-9 4 9"/><path d="M19.1 18h-6.2"/></svg>
+<select name=language title=language onchange="window.location.href=this.selectedOptions[0].value"><option value=https://jony-xu.github.io/en/ selected>English</option><option value=https://jony-xu.github.io/zh-cn/>Chinese</option></select></li><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>Dark Mode</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">Table of contents</h2><div class=widget--toc><nav id=TableOfContents><ol><li><a href=#leetcode-no33>leetcode No.33</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/en/categories/development/>Development</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/en/p/leetcode-no.33-search-in-rotated-sorted-array/>leetcode No.33 Search in Rotated Sorted Array</a></h2><h3 class=article-subtitle>leetcode No.33</h3></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published>May 08, 2025</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>8 minute read</time></div></footer></div></header><section class=article-content><h2 id=leetcode-no33>leetcode No.33</h2><p>There is an integer array nums sorted in ascending order (with distinct values).</p><p>Prior to being passed to your function, nums is possibly rotated at an unknown pivot index k (1 &lt;= k &lt; nums.length) such that the resulting array is [nums[k], nums[k+1], &mldr;, nums[n-1], nums[0], nums[1], &mldr;, nums[k-1]] (0-indexed). For example, [0,1,2,4,5,6,7] might be rotated at pivot index 3 and become [4,5,6,7,0,1,2].</p><p>Given the array nums after the possible rotation and an integer target, return the index of target if it is in nums, or -1 if it is not in nums.</p><p>You must write an algorithm with O(log n) runtime complexity.</p><p>Example 1:</p><p>Input: nums = [4,5,6,7,0,1,2], target = 0
+Output: 4</p><p>Example 2:</p><p>Input: nums = [4,5,6,7,0,1,2], target = 3
+Output: -1</p><p>Example 3:</p><p>Input: nums = [1], target = 0
+Output: -1</p><p>I&rsquo;d be happy to help you work through this problem! This is about searching in a rotated sorted array.</p><p>Let&rsquo;s think about this step by step. What is your first thought on how to approach a search in a rotated sorted array?</p><p>The problem mentions we need O(log n) complexity, which usually points to some kind of binary search. Have you considered how binary search might need to be modified for this scenario?</p><p>My thought: find the highest value and re-sort the array to a sorted list, then use the binary search.</p><p>That&rsquo;s a start! Let&rsquo;s think about this approach:</p><p>If we find the highest value and re-sort the array, that would work, but would take O(n log n) time for sorting, which doesn&rsquo;t meet the O(log n) requirement.</p><p>What if we didn&rsquo;t need to actually re-sort the array? Since the array was originally sorted and then rotated, it has a special property - it consists of two sorted segments.</p><p>Could we perhaps modify binary search to work directly on this rotated array? What would be different about applying binary search here compared to a regular sorted array?</p><p>please remind me for more details</p><p>Of course! Let&rsquo;s dig deeper into this problem.</p><p>In a regular sorted array, binary search works because we can compare the middle element with our target and know which half to search next. If the target is smaller, we search the left half; if larger, the right half.</p><p>In a rotated sorted array like [4,5,6,7,0,1,2], we have two sorted segments:</p><ol><li>[4,5,6,7] - first sorted segment</li><li>[0,1,2] - second sorted segment</li></ol><p>The challenge is: when we look at the middle element, we can&rsquo;t immediately tell which half to search.</p><p>Let&rsquo;s think about how to determine which segment is sorted. If we look at the first and middle elements:</p><ul><li>If nums[left] ≤ nums[mid], then the left segment is properly sorted</li><li>Otherwise, the right segment is properly sorted</li></ul><p>Once we know which segment is sorted, we can check if our target is within that segment&rsquo;s range. If yes, search there; if not, search the other segment.</p><p>Does this give you any ideas on how to modify binary search for this problem?</p><p>Thanks, I&rsquo;ve got the idea for solution</p><p>Great! Now that you have an idea, would you like to try implementing the solution? I&rsquo;d be happy to discuss any specific parts you&rsquo;re thinking about or help review your approach as you go along.</p><p>Remember, you&rsquo;ll want to:</p><ol><li>Use binary search (to meet the O(log n) requirement)</li><li>Determine which half of the array is sorted</li><li>Check if the target is in the sorted half&rsquo;s range</li><li>Search in the appropriate half</li></ol><p>Let me know if you&rsquo;d like to discuss any part of your implementation!</p><p>ok, here is the implement of the code.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>def search(self, nums: List[int], target: int) -&gt; int:
+</span></span><span class=line><span class=cl>    length = len(nums)
+</span></span><span class=line><span class=cl>    l, r = 0, length
+</span></span><span class=line><span class=cl>    m = (l + r)//2
+</span></span><span class=line><span class=cl>    while l &lt; r:
+</span></span><span class=line><span class=cl>        if nums[l] &lt; nums[m]:
+</span></span><span class=line><span class=cl>            # left is sorted
+</span></span><span class=line><span class=cl>            if target &lt; nums[m]:
+</span></span><span class=line><span class=cl>                # binary search in left
+</span></span><span class=line><span class=cl>                r = m
+</span></span><span class=line><span class=cl>                m = (l+r)//2
+</span></span><span class=line><span class=cl>            else:
+</span></span><span class=line><span class=cl>                # search in right
+</span></span><span class=line><span class=cl>                l = m
+</span></span><span class=line><span class=cl>        else:
+</span></span><span class=line><span class=cl>            # right is sorted
+</span></span><span class=line><span class=cl>            if target &lt; nums[m] or target &gt; nums[r]:
+</span></span><span class=line><span class=cl>                r = m
+</span></span><span class=line><span class=cl>            else:
+</span></span><span class=line><span class=cl>                # binary search in right
+</span></span><span class=line><span class=cl>                l = m
+</span></span><span class=line><span class=cl>                m = (l+r)//2
+</span></span><span class=line><span class=cl>    return nums[r] == target
+</span></span></code></pre></td></tr></table></div></div><p>Let&rsquo;s review your code together. I notice a few things we should look at:</p><ol><li><p>First, the return statement is comparing <code>nums[r] == target</code>, which returns a boolean (True/False) instead of the required index.</p></li><li><p>Let&rsquo;s check your binary search logic:</p><ul><li>You&rsquo;re setting <code>r = length</code> initially (which would be out of bounds)</li><li>Your loop condition is <code>l &lt; r</code>, which is good</li><li>The way you&rsquo;re updating <code>l</code> and <code>r</code> needs some refinement</li></ul></li><li><p>When checking which half is sorted, you&rsquo;re comparing <code>nums[l] &lt; nums[m]</code>, but there are some edge cases to consider.</p></li></ol><p>Let&rsquo;s think about how to modify this code. What would happen in your current code if the target is in the right half when the left half is sorted? How would you adjust your logic?</p><p>Also, can you walk me through how your algorithm would handle Example 1: <code>nums = [4,5,6,7,0,1,2], target = 0</code>?</p><p>thanks,this is my update of the code</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>def search(self, nums: List[int], target: int) -&gt; int:
+</span></span><span class=line><span class=cl>    l, r = 0, len(nums)-1
+</span></span><span class=line><span class=cl>    while l &lt; r:
+</span></span><span class=line><span class=cl>        m = (l + r)//2
+</span></span><span class=line><span class=cl>        if nums[l] &lt; nums[m]:
+</span></span><span class=line><span class=cl>            # left is sorted
+</span></span><span class=line><span class=cl>            if target &lt; nums[m] and target &gt; nums[l]:
+</span></span><span class=line><span class=cl>                # target in left
+</span></span><span class=line><span class=cl>                return self.binary_search(nums[0:m], target)
+</span></span><span class=line><span class=cl>            else:
+</span></span><span class=line><span class=cl>                # search in right
+</span></span><span class=line><span class=cl>                l = m
+</span></span><span class=line><span class=cl>        else:
+</span></span><span class=line><span class=cl>            # right is sorted
+</span></span><span class=line><span class=cl>            if target &lt; nums[m] or target &gt; nums[r]:
+</span></span><span class=line><span class=cl>                r = m
+</span></span><span class=line><span class=cl>            else:
+</span></span><span class=line><span class=cl>                # binary search in right
+</span></span><span class=line><span class=cl>                return self.binary_search(nums[m:r], target)
+</span></span><span class=line><span class=cl>    return r
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>def binary_search(nums, target):
+</span></span><span class=line><span class=cl>    l,r = 0, len(nums)
+</span></span><span class=line><span class=cl>    while l &lt; r:
+</span></span><span class=line><span class=cl>        m = (l+r)//2
+</span></span><span class=line><span class=cl>        if target == nums[m]:
+</span></span><span class=line><span class=cl>            return m
+</span></span><span class=line><span class=cl>        elif target &lt; nums[m]:
+</span></span><span class=line><span class=cl>            r = m
+</span></span><span class=line><span class=cl>        else:
+</span></span><span class=line><span class=cl>            l = m
+</span></span><span class=line><span class=cl>    return -1
+</span></span></code></pre></td></tr></table></div></div><p>Good progress! You&rsquo;re getting closer. Let me help you spot a few issues by walking through your logic:</p><ol><li><p>When you call <code>binary_search(nums[0:m], target)</code> or <code>binary_search(nums[m:r], target)</code>, what index does this return? Will it be the correct index for the original array?</p></li><li><p>In your condition <code>target &lt; nums[m] and target > nums[l]</code>, what happens if <code>target == nums[l]</code>? Would this target be found?</p></li><li><p>At the end, you return <code>r</code> - but what if the target isn&rsquo;t found at all?</p></li></ol><p>Let me ask you this: instead of creating separate subarrays and calling a separate binary search function, could you continue the binary search within the same function by just updating <code>l</code> and <code>r</code> pointers?</p><p>Can you walk me through what happens with your current code when <code>nums = [4,5,6,7,0,1,2]</code> and <code>target = 4</code>?</p><p>here is the update</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>def search(self, nums: List[int], target: int) -&gt; int:
+</span></span><span class=line><span class=cl>    l, r = 0, len(nums)-1
+</span></span><span class=line><span class=cl>    while l &lt; r:
+</span></span><span class=line><span class=cl>        m = (l + r)//2
+</span></span><span class=line><span class=cl>        if target == nums[m]:
+</span></span><span class=line><span class=cl>            return m
+</span></span><span class=line><span class=cl>        if nums[l] &lt; nums[m]:
+</span></span><span class=line><span class=cl>            # left is sorted
+</span></span><span class=line><span class=cl>            if target &lt;= nums[m] and target &gt;= nums[l]:
+</span></span><span class=line><span class=cl>                # target in left
+</span></span><span class=line><span class=cl>                r = m-1
+</span></span><span class=line><span class=cl>            else:
+</span></span><span class=line><span class=cl>                # search in right
+</span></span><span class=line><span class=cl>                l = m+1
+</span></span><span class=line><span class=cl>        else:
+</span></span><span class=line><span class=cl>            # right is sorted
+</span></span><span class=line><span class=cl>            if target &gt; nums[m] and target &lt;= nums[len(nums)-1]:
+</span></span><span class=line><span class=cl>                l = m+1
+</span></span><span class=line><span class=cl>            else:
+</span></span><span class=line><span class=cl>                # binary search in right
+</span></span><span class=line><span class=cl>                r = m-1
+</span></span><span class=line><span class=cl>    return -1
+</span></span></code></pre></td></tr></table></div></div><p>Good improvements! You&rsquo;re getting much closer. Let me help you spot a couple of issues:</p><ol><li><p>In your right-sorted section, you&rsquo;re using <code>nums[len(nums)-1]</code> but you should be using <code>nums[r]</code> since <code>r</code> represents the current right boundary of your search.</p></li><li><p>There&rsquo;s a logic issue in your right-sorted condition. You&rsquo;re checking <code>if target > nums[m] and target &lt;= nums[r]</code>, but what if the target is less than <code>nums[m]</code> in the right-sorted section?</p></li><li><p>Your while loop condition is <code>l &lt; r</code>, but you return -1 at the end. What happens if the target exists but <code>l</code> becomes equal to <code>r</code>?</p></li></ol><p>Let me ask: after your while loop ends, shouldn&rsquo;t you check if <code>nums[l]</code> equals the target?</p><p>Can you trace through your algorithm with <code>nums = [4,5,6,7,0,1,2]</code> and <code>target = 0</code>? What would happen step by step?</p><p>thanks, here is the latest update</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>def search(self, nums: List[int], target: int) -&gt; int:
+</span></span><span class=line><span class=cl>    if not nums: return -1
+</span></span><span class=line><span class=cl>    l, r = 0, len(nums)-1
+</span></span><span class=line><span class=cl>    while l &lt;= r:
+</span></span><span class=line><span class=cl>        m = (l + r)//2
+</span></span><span class=line><span class=cl>        if target == nums[m]:
+</span></span><span class=line><span class=cl>            return m
+</span></span><span class=line><span class=cl>        if nums[l] &lt;= nums[m]:
+</span></span><span class=line><span class=cl>            # left is sorted
+</span></span><span class=line><span class=cl>            if target &lt;= nums[m] and target &gt;= nums[l]:
+</span></span><span class=line><span class=cl>                # target in left
+</span></span><span class=line><span class=cl>                r = m-1
+</span></span><span class=line><span class=cl>            else:
+</span></span><span class=line><span class=cl>                # search in right
+</span></span><span class=line><span class=cl>                l = m+1
+</span></span><span class=line><span class=cl>        else:
+</span></span><span class=line><span class=cl>            # right is sorted
+</span></span><span class=line><span class=cl>            if target &gt; nums[m] and target &lt;= nums[r]:
+</span></span><span class=line><span class=cl>                l = m+1
+</span></span><span class=line><span class=cl>            else:
+</span></span><span class=line><span class=cl>                # binary search in right
+</span></span><span class=line><span class=cl>                r = m-1
+</span></span><span class=line><span class=cl>    return -1
+</span></span></code></pre></td></tr></table></div></div><p>Excellent! Your code looks much better now. Let me check the logic carefully&mldr;</p><p>You&rsquo;ve made great improvements:</p><ul><li>Changed to <code>l &lt;= r</code> which is correct</li><li>Added the edge case check for empty array</li><li>Used <code>nums[l] &lt;= nums[m]</code> to handle duplicates</li><li>Fixed the right boundary to use <code>nums[r]</code></li></ul><p>I think your solution should work correctly now! Let me ask you to trace through one example to make sure you understand the flow:</p><p>Can you walk me through what happens with <code>nums = [4,5,6,7,0,1,2]</code> and <code>target = 0</code>?</p><p>Starting with <code>l=0, r=6</code>:</p><ul><li>What would be the value of <code>m</code>?</li><li>Which half would be considered sorted?</li><li>Which direction would the search go?</li></ul><p>This will help confirm your understanding of the algorithm!</p></section><footer class=article-footer><section class=article-copyright><svg class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><path d="M14.5 9a3.5 4 0 100 6"/></svg>
+<span>Licensed under CC BY-NC-SA 4.0</span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>Related content</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/en/p/leetcode-no.142-linked-list-cycle-ii/><div class=article-details><h2 class=article-title>leetcode No.142 Linked List Cycle II</h2></div></a></article><article><a href=/en/p/leetcode-no.135-candy/><div class=article-details><h2 class=article-title>leetcode No.135 Candy</h2></div></a></article><article><a href=/en/p/egg-drop-problem/><div class=article-details><h2 class=article-title>Egg Drop Problem</h2></div></a></article><article><a href=/en/p/assign-cookies/><div class=article-details><h2 class=article-title>Assign Cookies</h2></div></a></article><article><a href=/en/p/generate-parentheses/><div class=article-details><h2 class=article-title>Generate Parentheses</h2></div></a></article></div></div></aside><div class=disqus-container><div id=disqus_thread></div><script>window.disqus_config=function(){},function(){if(["localhost","127.0.0.1"].indexOf(window.location.hostname)!=-1){document.getElementById("disqus_thread").innerHTML="Disqus comments not available by default when the website is previewed locally.";return}var t=document,e=t.createElement("script");e.async=!0,e.src="//hugo-theme-stack.disqus.com/embed.js",e.setAttribute("data-timestamp",+new Date),(t.head||t.body).appendChild(e)}()</script><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><a href=https://disqus.com class=dsq-brlink>comments powered by <span class=logo-disqus>Disqus</span></a></div><style>.disqus-container{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}</style><script>window.addEventListener("onColorSchemeChange",e=>{typeof DISQUS=="object"&&DISQUS.reset({reload:!0})})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2025 Xeeeeon Blog</section><section class=powerby>Built with <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a><br>Theme <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=3.30.0>Stack</a></b> designed by <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a></section></footer><div class=pswp tabindex=-1 role=dialog aria-hidden=true><div class=pswp__bg></div><div class=pswp__scroll-wrap><div class=pswp__container><div class=pswp__item></div><div class=pswp__item></div><div class=pswp__item></div></div><div class="pswp__ui pswp__ui--hidden"><div class=pswp__top-bar><div class=pswp__counter></div><button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+<button class="pswp__button pswp__button--share" title=Share></button>
+<button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+<button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button><div class=pswp__preloader><div class=pswp__preloader__icn><div class=pswp__preloader__cut><div class=pswp__preloader__donut></div></div></div></div></div><div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap"><div class=pswp__share-tooltip></div></div><button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+</button>
+<button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button><div class=pswp__caption><div class=pswp__caption__center></div></div></div></div></div><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo=" crossorigin=anonymous defer></script><script src=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU=" crossorigin=anonymous defer></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css crossorigin=anonymous><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css crossorigin=anonymous></main></div><script src=https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z+KMkF24hUW8WePSA9HM=" crossorigin=anonymous></script><script type=text/javascript src=/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
